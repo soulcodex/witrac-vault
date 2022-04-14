@@ -1,0 +1,19 @@
+parameters:
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+
+  # Vault BC services
+  Witrac\Vault\:
+    resource: '../../../src/Vault'
+
+  # Vault BC controllers
+  App\Vault\Controller\:
+    resource: '../../../app/Vault/Controller/**'
+    tags: [ 'controller.service_arguments' ]
+
+  # Commands
+  Witrac\Vault\Application\Command\:
+    resource: '../../../src/Vault/Application/Command/**/**/*Handler.php'
+    tags: [ 'witrac.command_handler']

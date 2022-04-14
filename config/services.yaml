@@ -1,0 +1,57 @@
+# This file is the entry point to configure your own services.
+# Files in the packages/ subdirectory configure your dependencies.
+
+# Put parameters here that don't need to change on each machine where the app is deployed
+# https://symfony.com/doc/current/best_practices.html#use-parameters-for-application-configuration
+parameters:
+
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+
+    # Middlewares
+    # ----------
+    Witrac\Shared\Infrastructure\Symfony\AddJsonBodyToRequestListener:
+        tags:
+            - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest }
+
+    # Tag instances
+    # -------------
+    _instanceof:
+        Witrac\Shared\Domain\Bus\Command\CommandHandler:
+            tags: [ 'witrac.command_handler' ]
+
+        Witrac\Shared\Domain\Bus\Query\QueryHandler:
+            tags: [ 'witrac.query_handler' ]
+
+        Witrac\Shared\Domain\Bus\Event\EventSubscriber:
+            tags: [ 'witrac.event_subscriber' ]
+
+        Witrac\Shared\Domain\Bus\Event\EventBus:
+            tags: [ 'witrac.event_bus' ]
+
+    # Configure params
+    # ----------------
+    Witrac\Shared\Infrastructure\Bus\Command\InMemorySymfonyCommandBus:
+        arguments: [ !tagged witrac.command_handler ]
+
+    Witrac\Shared\Infrastructure\Bus\Query\InMemorySymfonyQueryBus:
+        arguments: [ !tagged witrac.query_handler ]
+
+    Witrac\Shared\Infrastructure\Bus\Event\InMemorySymfonyEventBus:
+        arguments: [ !tagged witrac.event_subscriber ]
+
+    Witrac\Shared\Infrastructure\Bus\Event\MySqlDoctrineEventConsumer:
+        arguments: [ !tagged witrac.event_subscriber ]
+
+    Witrac\Shared\Infrastructure\Bus\Event\MySqlDoctrineEventBus:
+        arguments: [ '@doctrine.orm.entity_manager']
+
+    # Interfaces definitions
+    # ----------------------
+    Witrac\Shared\Domain\Bus\Event\EventBus: '@Witrac\Shared\Infrastructure\Bus\Event\MySqlDoctrineEventBus'
+    Witrac\Shared\Domain\Bus\Command\CommandBus: '@Witrac\Shared\Infrastructure\Bus\Command\InMemorySymfonyCommandBus'
+
+imports:
+    - { resource: 'context/vault/services.yaml' }

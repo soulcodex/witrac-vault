@@ -1,0 +1,13 @@
+doctrine:
+  dbal:
+    types:
+      library_uuid: Witrac\Vault\Infrastructure\Persistence\Doctrine\Library\LibraryUuidType
+      library_name: Witrac\Vault\Infrastructure\Persistence\Doctrine\Library\LibraryNameType
+  orm:
+    mappings:
+      Library:
+        is_bundle: false
+        type: xml
+        dir: '%kernel.project_dir%/src/Vault/Infrastructure/Persistence/Doctrine/Library'
+        prefix: 'Witrac\Vault\Domain\Library'
+        alias: Witrac\Vault\Domain\Library

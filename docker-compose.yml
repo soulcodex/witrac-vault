@@ -1,0 +1,48 @@
+version: "3.7"
+
+services:
+  webserver:
+    container_name: 'webserver-witrac'
+    build:
+      context: ./docker/webserver
+      dockerfile: Dockerfile
+      args:
+        PHP_VERSION: 8.0
+    restart: 'always'
+    ports:
+      - "3000:80"
+    links:
+      - mysql
+    environment:
+      - PHP_IDE_CONFIG=serverName=localhost
+      - PHP_VERSION=8.0
+    volumes:
+      - ./:/var/www/html
+      - ./docker/config/php/php.ini:/usr/local/etc/php/php.ini
+      - ./docker/config/vhosts:/etc/apache2/sites-enabled
+      - ./var/log/docker/apache2:/var/log/apache2
+      - ./var/log/docker/xdebug:/var/log/xdebug
+  mysql:
+    container_name: 'mysql-witrac'
+    build:
+      context: ./docker/mysql
+    restart: 'always'
+    ports:
+      - "3301:3306"
+    command: --max_allowed_packet=32505856
+    volumes:
+      - ./var/data/docker/mysql:/var/lib/mysql
+      - ./var/log/docker/mysql:/var/log/mysql
+      - ./docker/mysql/init.sql:/docker-entrypoint-initdb.d/init.sql
+    environment:
+      MYSQL_ROOT_PASSWORD: witrac_vault_api
+  s3_storage:
+    container_name: 'aws-s3-witrac'
+    image: localstack/localstack
+    environment:
+      - SERVICES=s3
+      - BUCKET_NAME=vault
+    ports:
+      - "4566:4566"
+    volumes:
+      - ./docker/storage/s3:/docker-entrypoint-initaws.d
