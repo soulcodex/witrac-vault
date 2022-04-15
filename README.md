@@ -24,4 +24,10 @@ running `php bin/console doctrine:migrations:migrate` and `php bin/console doctr
 
 ## Considerations 🕵
 
-Coming soon 📦
+1. The implementation of consumer for published domain events is not completed i just have been defined as an interface.
+2. The [FileStatus](./src/Vault/Domain/File/FileStatus.php) could be better at least the behavior should
+be migrated as enumerated and keep the business domain context.
+3. Refactor [Custom Doctrine Types](./src/Shared/Infrastructure/Persistence/Doctrine) classes to avoid repeated logic.
+4. Refactor input data validation controllers could be a great idea to establish a standard way to validate all
+incoming data.
+5. Refactor storage systems implementations and abstractions.

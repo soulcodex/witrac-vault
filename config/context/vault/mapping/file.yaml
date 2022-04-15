@@ -1,0 +1,16 @@
+doctrine:
+  dbal:
+    types:
+      file_uuid: Witrac\Vault\Infrastructure\Persistence\Doctrine\File\FileUuidType
+      file_name: Witrac\Vault\Infrastructure\Persistence\Doctrine\File\FileNameType
+      file_size: Witrac\Vault\Infrastructure\Persistence\Doctrine\File\FileSizeType
+      file_mime: Witrac\Vault\Infrastructure\Persistence\Doctrine\File\FileMimeType
+      file_status: Witrac\Vault\Infrastructure\Persistence\Doctrine\File\FileStatusType
+  orm:
+    mappings:
+      File:
+        is_bundle: false
+        type: xml
+        dir: '%kernel.project_dir%/src/Vault/Infrastructure/Persistence/Doctrine/File'
+        prefix: 'Witrac\Vault\Domain\File'
+        alias: Witrac\Vault\Domain\File

@@ -18,4 +18,5 @@
 .bash_history
 .mysql_history
 .composer
+.gitconfig
 ###< docker/garbage ###

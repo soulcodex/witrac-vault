@@ -7,6 +7,7 @@ namespace Witrac\Shared\Infrastructure\Persistence\Doctrine;
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\StringType;
 use Witrac\Shared\Domain\Utils;
+use Witrac\Shared\Domain\ValueObject\Uuid;
 
 abstract class UuidType extends StringType implements DoctrineCustomType
 {
@@ -33,6 +34,10 @@ abstract class UuidType extends StringType implements DoctrineCustomType
 
     public function convertToDatabaseValue($value, AbstractPlatform $platform)
     {
+        if (!$value instanceof Uuid) {
+            return $value;
+        }
+
         return $value->value();
     }
 }

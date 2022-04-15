@@ -1,24 +1,24 @@
 <?php
 
-namespace Witrac\Vault\Domain\Library\Event;
+namespace Witrac\Vault\Domain\File\Event;
 
 use Witrac\Shared\Domain\Bus\Event\Event;
-use Witrac\Vault\Domain\Library\Library;
+use Witrac\Vault\Domain\File\File;
 
-final class LibraryCreatedEvent extends Event
+final class FileCreatedEvent extends Event
 {
     public function __construct(
-        private Library $library,
+        private File $file,
         string $eventId = null,
         string $createdAt = null
     ) {
-        parent::__construct($this->library->id(), $eventId, $createdAt);
+        parent::__construct($file->id()->value(), $eventId, $createdAt);
     }
 
     public static function fromPrimitives(string $aggregateId, array $body, string $eventId, string $createdAt): Event
     {
         return new self(
-            Library::fromArray($body),
+            File::fromArray($body),
             $eventId,
             $createdAt
         );
@@ -26,11 +26,11 @@ final class LibraryCreatedEvent extends Event
 
     public static function eventName(): string
     {
-        return 'witrac.vault.library.created';
+        return 'witrac.vault.file.created';
     }
 
     public function toPrimitives(): array
     {
-        return $this->library->toArray();
+        return $this->file->toArray();
     }
 }

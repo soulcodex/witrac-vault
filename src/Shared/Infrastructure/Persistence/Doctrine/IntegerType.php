@@ -3,10 +3,10 @@
 namespace Witrac\Shared\Infrastructure\Persistence\Doctrine;
 
 use Doctrine\DBAL\Platforms\AbstractPlatform;
-use Doctrine\DBAL\Types\StringType as DoctrineStringType;
+use Doctrine\DBAL\Types\IntegerType as DoctrineIntegerType;
 use Witrac\Shared\Domain\Utils;
 
-abstract class StringType extends DoctrineStringType implements DoctrineCustomType
+abstract class IntegerType extends DoctrineIntegerType implements DoctrineCustomType
 {
     abstract protected function typeClassName(): string;
 

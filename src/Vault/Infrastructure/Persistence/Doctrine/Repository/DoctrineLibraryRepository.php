@@ -8,7 +8,7 @@ use Witrac\Shared\Infrastructure\Persistence\DoctrineRepository;
 use Witrac\Vault\Domain\Library\Library;
 use Witrac\Vault\Domain\Library\LibraryName;
 use Witrac\Vault\Domain\Library\LibraryUuid;
-use Witrac\Vault\Domain\LibraryRepository;
+use Witrac\Vault\Domain\Library\LibraryRepository;
 
 class DoctrineLibraryRepository extends DoctrineRepository implements LibraryRepository
 {

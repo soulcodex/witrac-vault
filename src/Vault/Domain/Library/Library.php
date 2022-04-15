@@ -9,21 +9,18 @@ use Witrac\Vault\Domain\Library\Event\LibraryCreatedEvent;
 
 final class Library extends AggregateRoot
 {
-    private LibraryUuid $id;
-    private LibraryName $name;
-    private LibraryCreatedAt $createdAt;
-    private ?LibraryUpdatedAt $updatedAt;
-
+    /**
+     * @param LibraryUuid           $id
+     * @param LibraryName           $name
+     * @param LibraryCreatedAt      $createdAt
+     * @param LibraryUpdatedAt|null $updatedAt
+     */
     public function __construct(
-        LibraryUuid $id,
-        LibraryName $name,
-        LibraryCreatedAt $createdAt,
-        ?LibraryUpdatedAt $updatedAt = null
+        private LibraryUuid $id,
+        private LibraryName $name,
+        private LibraryCreatedAt $createdAt,
+        private ?LibraryUpdatedAt $updatedAt = null
     ) {
-        $this->id = $id;
-        $this->name = $name;
-        $this->createdAt = $createdAt;
-        $this->updatedAt = $updatedAt;
     }
 
     public function id(): LibraryUuid
@@ -75,7 +72,7 @@ final class Library extends AggregateRoot
         return new self(
             new LibraryUuid($parameters['id']),
             new LibraryName($parameters['name']),
-            new LibraryCreatedAt($parameters['createdAt']),
+            new LibraryCreatedAt(Utils::fromStringToDate($parameters['createdAt'])),
             new LibraryUpdatedAt(Utils::fromStringToDate($parameters['updatedAt']))
         );
     }

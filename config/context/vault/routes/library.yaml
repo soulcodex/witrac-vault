@@ -2,8 +2,3 @@ post_library:
   path: /libraries
   controller: App\Vault\Controller\Library\Create\CreateLibraryController
   methods: POST
-
-put_library:
-  path: /libraries/{id}
-  controller: App\Vault\Controller\Library\UpdateLibraryController
-  methods: PUT

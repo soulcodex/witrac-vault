@@ -1,0 +1,4 @@
+post_file:
+  path: /files
+  controller: App\Vault\Controller\File\Create\CreateFileController
+  methods: POST

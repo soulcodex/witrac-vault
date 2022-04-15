@@ -5,7 +5,7 @@ namespace Witrac\Vault\Application\Command\Library\Create;
 use Witrac\Shared\Domain\Bus\Command\CommandHandler;
 use Witrac\Shared\Domain\Bus\Event\EventBus;
 use Witrac\Vault\Domain\Library\Library;
-use Witrac\Vault\Domain\LibraryRepository;
+use Witrac\Vault\Domain\Library\LibraryRepository;
 
 final class CreateLibraryCommandHandler implements CommandHandler
 {

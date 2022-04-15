@@ -13,6 +13,7 @@ use Symfony\Component\Messenger\Handler\HandlersLocator;
 use Symfony\Component\Messenger\MessageBus;
 use Symfony\Component\Messenger\Middleware\HandleMessageMiddleware;
 use Witrac\Shared\Domain\Bus\Event\Event;
+use Witrac\Shared\Domain\Bus\Event\EventBus;
 use Witrac\Shared\Domain\Bus\Event\EventMapper;
 use Witrac\Shared\Domain\Utils;
 use Witrac\Shared\Infrastructure\Bus\GetPipedHandlers;
@@ -57,7 +58,7 @@ final class MySqlDoctrineEventConsumer
         EOF;
 
         $rawEvents = $this->connection
-            ->executeQuery(sprintf($consumeEventsQuery, MySqlDoctrineEventBus::DOMAIN_EVENTS_TABLE, $quantity))
+            ->executeQuery(sprintf($consumeEventsQuery, EventBus::STORE_ON, $quantity))
             ->fetchAllAssociative();
 
         return map($this->constructEvent(), $rawEvents);

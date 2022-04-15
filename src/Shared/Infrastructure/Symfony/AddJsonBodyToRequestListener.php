@@ -12,16 +12,15 @@ use Witrac\Shared\Domain\Utils;
 
 final class AddJsonBodyToRequestListener
 {
-    /**
-     * @param RequestEvent $event
-     * @return void
-     */
     public function onKernelRequest(RequestEvent $event): void
     {
         $request = $event->getRequest();
         $requestContents = $request->getContent();
 
-        if (empty($requestContents) && $this->containsHeader($request, 'Content-Type', 'application/json')) {
+        if (
+            empty($requestContents) &&
+            !str_starts_with('application/json', $request->headers->get('Content-Type'))
+        ) {
             return;
         }
 
@@ -41,16 +40,5 @@ final class AddJsonBodyToRequestListener
         }
 
         $request->request->replace($jsonDataLowerCase);
-    }
-
-    /**
-     * @param Request $request
-     * @param string $name
-     * @param string $value
-     * @return bool
-     */
-    private function containsHeader(Request $request, string $name, string $value): bool
-    {
-        return str_starts_with($request->headers->get($name), $value);
     }
 }

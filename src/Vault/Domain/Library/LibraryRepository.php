@@ -1,6 +1,6 @@
 <?php
 
-namespace Witrac\Vault\Domain;
+namespace Witrac\Vault\Domain\Library;
 
 use Witrac\Shared\Domain\Repository\Exception\NotFoundException;
 use Witrac\Vault\Domain\Library\Library;
