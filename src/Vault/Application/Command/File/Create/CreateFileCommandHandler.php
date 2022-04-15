@@ -48,6 +48,8 @@ class CreateFileCommandHandler implements CommandHandler
             'status' => FileStatus::UPLOADED,
         ]);
 
+        $file->belongsToLibrary($library);
+
         $this->fileRepository->save($file);
         $this->eventBus->publish(...$file->pullEvents());
 

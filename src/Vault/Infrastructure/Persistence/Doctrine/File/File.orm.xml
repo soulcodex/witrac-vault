@@ -12,6 +12,9 @@
         <field name="status" type="file_status" column="status"/>
         <embedded name="createdAt" class="Witrac\Vault\Domain\File\FileCreatedAt" use-column-prefix="false"/>
         <embedded name="updatedAt" class="Witrac\Vault\Domain\File\FileUpdatedAt" use-column-prefix="false"/>
-    </entity>
 
+        <many-to-one field="library" target-entity="Witrac\Vault\Domain\Library\Library" fetch="EXTRA_LAZY">
+            <join-column name="library_id" nullable="false"/>
+        </many-to-one>
+    </entity>
 </doctrine-mapping>

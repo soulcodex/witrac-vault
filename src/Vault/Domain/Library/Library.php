@@ -2,13 +2,20 @@
 
 namespace Witrac\Vault\Domain\Library;
 
+use Doctrine\Common\Collections\Collection;
 use Witrac\Shared\Domain\Aggregate\AggregateRoot;
 use Witrac\Shared\Domain\Utils;
 use Witrac\Shared\Domain\ValueObject\Uuid;
+use Witrac\Vault\Domain\File\File;
 use Witrac\Vault\Domain\Library\Event\LibraryCreatedEvent;
 
 final class Library extends AggregateRoot
 {
+    /**
+     * @var Collection<int, File>
+     */
+    private Collection $files;
+
     /**
      * @param LibraryUuid           $id
      * @param LibraryName           $name
@@ -41,6 +48,11 @@ final class Library extends AggregateRoot
     public function updatedAt(): LibraryUpdatedAt
     {
         return $this->updatedAt;
+    }
+
+    public function files(): Collection
+    {
+        return $this->files;
     }
 
     public function toArray(): array

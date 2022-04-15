@@ -5,9 +5,15 @@ namespace Witrac\Vault\Domain\File;
 use Witrac\Shared\Domain\Aggregate\AggregateRoot;
 use Witrac\Shared\Domain\Utils;
 use Witrac\Vault\Domain\File\Event\FileCreatedEvent;
+use Witrac\Vault\Domain\Library\Library;
 
 final class File extends AggregateRoot
 {
+    /**
+     * @var Library
+     */
+    private Library $library;
+
     /**
      * @param FileUuid           $id
      * @param FileName           $name
@@ -68,6 +74,16 @@ final class File extends AggregateRoot
     public function updatedAt(): ?FileUpdatedAt
     {
         return $this->updatedAt;
+    }
+
+    public function library(): Library
+    {
+        return $this->library;
+    }
+
+    public function belongsToLibrary(Library $library): void
+    {
+        $this->library = $library;
     }
 
     public function toArray(): array

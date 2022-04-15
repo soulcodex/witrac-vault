@@ -3,12 +3,12 @@
                   xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
                   xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
                           https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
-
     <entity name="Witrac\Vault\Domain\Library\Library" table="vault_libraries">
         <id name="id" type="library_uuid" column="id" length="36"/>
         <field name="name" type="library_name" column="name"/>
         <embedded name="createdAt" class="Witrac\Vault\Domain\Library\LibraryCreatedAt" use-column-prefix="false"/>
         <embedded name="updatedAt" class="Witrac\Vault\Domain\Library\LibraryUpdatedAt" use-column-prefix="false"/>
-    </entity>
 
+        <one-to-many field="files" target-entity="Witrac\Vault\Domain\File\File" mapped-by="library" fetch="EXTRA_LAZY"/>
+    </entity>
 </doctrine-mapping>
