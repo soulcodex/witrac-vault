@@ -29,3 +29,4 @@ be migrated as enumerated and keep the business domain context.
 4. Refactor input data validation controllers could be a great idea to establish a standard way to validate all
 incoming data.
 5. Refactor storage systems implementations and abstractions.
+6. The kernel is shared between bounded contexts but could be separated if every bounded context has specifics requirements about configuration.
