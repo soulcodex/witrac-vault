@@ -3,6 +3,7 @@ doctrine:
     types:
       file_uuid: Witrac\Vault\Infrastructure\Persistence\Doctrine\File\FileUuidType
       file_name: Witrac\Vault\Infrastructure\Persistence\Doctrine\File\FileNameType
+      file_path: Witrac\Vault\Infrastructure\Persistence\Doctrine\File\FilePathType
       file_size: Witrac\Vault\Infrastructure\Persistence\Doctrine\File\FileSizeType
       file_mime: Witrac\Vault\Infrastructure\Persistence\Doctrine\File\FileMimeType
       file_status: Witrac\Vault\Infrastructure\Persistence\Doctrine\File\FileStatusType

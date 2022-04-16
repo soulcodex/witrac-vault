@@ -7,6 +7,7 @@
     <entity name="Witrac\Vault\Domain\File\File" table="vault_files">
         <id name="id" type="file_uuid" column="id" length="36"/>
         <field name="name" type="file_name" column="name"/>
+        <field name="path" type="file_path" column="path"/>
         <field name="size" type="file_size" column="size"/>
         <field name="mime" type="file_mime" column="mime_type"/>
         <field name="status" type="file_status" column="status"/>
