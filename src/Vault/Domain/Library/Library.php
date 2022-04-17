@@ -2,6 +2,7 @@
 
 namespace Witrac\Vault\Domain\Library;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Witrac\Shared\Domain\Aggregate\AggregateRoot;
 use Witrac\Shared\Domain\Utils;
@@ -28,6 +29,7 @@ final class Library extends AggregateRoot
         private LibraryCreatedAt $createdAt,
         private ?LibraryUpdatedAt $updatedAt = null
     ) {
+        $this->files = new ArrayCollection();
     }
 
     public function id(): LibraryUuid

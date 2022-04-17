@@ -23,6 +23,11 @@ services:
     resource: '../../../src/Vault/Application/Command/**/**/*Handler.php'
     tags: [ 'witrac.command_handler']
 
+  # Query
+  Witrac\Vault\Application\Query\:
+    resource: '../../../src/Vault/Application/Query/**/**/*Handler.php'
+    tags: ['witrac.query_handler']
+
   # AWS S3 Adapter
   Aws\S3\S3Client:
     arguments:

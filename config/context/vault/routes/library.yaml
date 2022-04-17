@@ -2,3 +2,8 @@ post_library:
   path: /libraries
   controller: App\Vault\Controller\Library\Create\CreateLibraryController
   methods: POST
+
+get_libraries:
+  path: /libraries
+  controller: App\Vault\Controller\Library\GetCollection\GetLibraryCollectionController
+  methods: GET

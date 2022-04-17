@@ -52,6 +52,7 @@ services:
     # ----------------------
     Witrac\Shared\Domain\Bus\Event\EventBus: '@Witrac\Shared\Infrastructure\Bus\Event\MySqlDoctrineEventBus'
     Witrac\Shared\Domain\Bus\Command\CommandBus: '@Witrac\Shared\Infrastructure\Bus\Command\InMemorySymfonyCommandBus'
+    Witrac\Shared\Domain\Bus\Query\QueryBus: '@Witrac\Shared\Infrastructure\Bus\Query\InMemorySymfonyQueryBus'
 
 imports:
     - { resource: 'context/vault/services.yaml' }

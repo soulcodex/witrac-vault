@@ -3,12 +3,14 @@
 namespace Witrac\Vault\Domain\Library;
 
 use Witrac\Shared\Domain\Repository\Exception\NotFoundException;
-use Witrac\Vault\Domain\Library\Library;
-use Witrac\Vault\Domain\Library\LibraryName;
-use Witrac\Vault\Domain\Library\LibraryUuid;
 
 interface LibraryRepository
 {
+    /**
+     * @return Library[]
+     */
+    public function all(): array;
+
     public function save(Library $library): void;
 
     public function findById(LibraryUuid $id): ?Library;

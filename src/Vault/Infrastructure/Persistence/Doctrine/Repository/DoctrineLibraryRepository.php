@@ -17,6 +17,14 @@ class DoctrineLibraryRepository extends DoctrineRepository implements LibraryRep
         parent::__construct($entityManager, Library::class);
     }
 
+    /**
+     * @return Library[]
+     */
+    public function all(): array
+    {
+        return $this->repository()->findAll();
+    }
+
     public function save(Library $library): void
     {
         $this->persist($library);
