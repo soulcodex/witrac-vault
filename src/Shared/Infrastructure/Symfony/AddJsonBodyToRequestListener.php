@@ -19,7 +19,8 @@ final class AddJsonBodyToRequestListener
 
         if (
             empty($requestContents) &&
-            !str_starts_with('application/json', $request->headers->get('Content-Type'))
+            !str_starts_with('application/json', $request->headers->get('Content-Type')) ||
+            Request::METHOD_GET === $request->getMethod()
         ) {
             return;
         }

@@ -30,3 +30,15 @@ be migrated as enumerated and keep the business domain context.
 incoming data.
 5. Refactor storage systems implementations and abstractions.
 6. The kernel is shared between bounded contexts but could be separated if every bounded context has specifics requirements about configuration.
+7. Some entities have Doctrine [Collection](./vendor/doctrine/collections/lib/Doctrine/Common/Collections/Collection.php) typehint and
+for me this is a possible shortcut taken. They say that is not problem because all behind scenes' implementation comes from
+[PHP itself & SPL,](https://www.doctrine-project.org/projects/doctrine-orm/en/2.11/reference/association-mapping.html#collections) but it is possible
+think another approach to manage this scenario.
+```
+The Collection interface and ArrayCollection class, like everything else in the Doctrine namespace, are neither part of the ORM, 
+nor the DBAL, it is a plain PHP class that has no outside dependencies apart from dependencies on PHP itself (and the SPL). 
+Therefore using this class in your model and elsewhere does not introduce a coupling to the ORM.
+```
+8. Authentication system isn't implemented.
+9. Generic exception catching on controllers is a shortcut taken and could be replaced by an exception mapping
+responses by controller and environment (error trace in dev environments is really usefully).

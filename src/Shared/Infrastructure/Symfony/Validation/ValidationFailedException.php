@@ -19,6 +19,6 @@ class ValidationFailedException extends Exception
      */
     public function getErrors(): ConstraintViolationList
     {
-        dd($this->errors);
+        return $this->errors;
     }
 }

@@ -2,11 +2,14 @@
 
 namespace App\Vault\Controller\File\Create;
 
+use Exception;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Witrac\Shared\Domain\Bus\Command\CommandBus;
+use Witrac\Shared\Infrastructure\Http\ErrorResponse;
+use Witrac\Shared\Infrastructure\Http\ValidationResponse;
 use Witrac\Shared\Infrastructure\Symfony\Validation\ValidationFailedException;
 use Witrac\Vault\Application\Command\File\Create\CreateFileCommand;
 use Witrac\Vault\Domain\Library\LibraryUuid;
@@ -37,7 +40,9 @@ class CreateFileController
 
             return new Response(null, Response::HTTP_CREATED);
         } catch (ValidationFailedException $e) {
-            $e->getErrors();
+            return new ValidationResponse($e->getErrors());
+        } catch (Exception $e) {
+            return new ErrorResponse($e);
         }
     }
 }
