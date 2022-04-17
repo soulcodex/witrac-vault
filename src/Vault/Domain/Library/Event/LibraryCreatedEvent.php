@@ -26,7 +26,7 @@ final class LibraryCreatedEvent extends Event
 
     public static function eventName(): string
     {
-        return 'witrac.vault.library.created';
+        return 'witrac.vault.library.v1.created';
     }
 
     public function toPrimitives(): array

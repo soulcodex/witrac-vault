@@ -8,10 +8,12 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Witrac\Shared\Domain\Bus\Command\CommandBus;
+use Witrac\Shared\Domain\ValueObject\Uuid;
 use Witrac\Shared\Infrastructure\Http\ErrorResponse;
 use Witrac\Shared\Infrastructure\Http\ValidationResponse;
 use Witrac\Shared\Infrastructure\Symfony\Validation\ValidationFailedException;
 use Witrac\Vault\Application\Command\File\Create\CreateFileCommand;
+use Witrac\Vault\Domain\File\FileUuid;
 use Witrac\Vault\Domain\Library\LibraryUuid;
 
 class CreateFileController
@@ -31,6 +33,7 @@ class CreateFileController
             $file = $request->files->get('file');
 
             $command = new CreateFileCommand(
+                new FileUuid(Uuid::generate()),
                 $file,
                 $file->getClientOriginalName(),
                 new LibraryUuid($request->request->get('library'))

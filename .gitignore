@@ -20,3 +20,8 @@
 .composer
 .gitconfig
 ###< docker/garbage ###
+
+###> phpunit/phpunit ###
+/phpunit.xml
+.phpunit.result.cache
+###< phpunit/phpunit ###

@@ -26,7 +26,7 @@ final class FileCreatedEvent extends Event
 
     public static function eventName(): string
     {
-        return 'witrac.vault.file.created';
+        return 'witrac.vault.file.v1.created';
     }
 
     public function toPrimitives(): array

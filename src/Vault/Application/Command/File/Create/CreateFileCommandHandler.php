@@ -11,7 +11,6 @@ use Witrac\Shared\Domain\Repository\Exception\NotFoundException;
 use Witrac\Vault\Domain\File\File;
 use Witrac\Vault\Domain\File\FileRepository;
 use Witrac\Vault\Domain\File\FileStatus;
-use Witrac\Vault\Domain\File\FileUuid;
 use Witrac\Vault\Domain\Library\LibraryRepository;
 
 class CreateFileCommandHandler implements CommandHandler
@@ -30,17 +29,15 @@ class CreateFileCommandHandler implements CommandHandler
      */
     public function __invoke(CreateFileCommand $command): File
     {
-        $fileIdentifier = FileUuid::generate();
-
         $library = $this->libraryRepository->findByIdOrFail($command->library());
 
         $this->filesystem->create(
-            $filePath = sprintf('%s_%s', $fileIdentifier, round(microtime(true) * 1000)),
+            $filePath = sprintf('%s_%s', $command->id()->value(), round(microtime(true) * 1000)),
             $this->getFileContents($command->file()->getRealPath())
         );
 
         $file = File::create([
-            'id' => $fileIdentifier,
+            'id' => $command->id()->value(),
             'name' => $command->fileName(),
             'path' => $filePath,
             'size' => $command->file()->getSize(),
