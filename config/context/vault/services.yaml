@@ -1,5 +1,4 @@
 parameters:
-  # Max file size in Kbs
   max_file_size: '2M'
 services:
   _defaults:

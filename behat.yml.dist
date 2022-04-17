@@ -1,0 +1,18 @@
+default:
+    suites:
+        libraries:
+            paths:
+                - ./tests/Features/Vault/Library/
+            contexts:
+                - Witrac\Tests\Features\Shared\Infrastructure\Behat\DatabaseContext
+                - Witrac\Tests\Features\Shared\Infrastructure\Behat\ApplicationContext
+    extensions:
+        FriendsOfBehat\SymfonyExtension:
+          kernel:
+            class: App\Kernel
+          bootstrap: ./tests/bootstrap.php
+        Behat\MinkExtension:
+          sessions:
+            symfony:
+              symfony: ~
+          base_url: ''

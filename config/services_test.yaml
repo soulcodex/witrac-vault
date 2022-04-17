@@ -1,0 +1,21 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+
+    Witrac\Tests\Features\Shared\Infrastructure\Behat\:
+        resource: '../tests/Features/Shared/Infrastructure/Behat/*'
+
+    Witrac\Tests\Features\Shared\:
+        resource: '../tests/Features/Shared'
+
+    Witrac\Tests\Shared\:
+        resource: '../tests/Shared/'
+
+    Witrac\Tests\Shared\Infrastructure\Doctrine\DatabaseCleaner:
+        class: 'Witrac\Tests\Shared\Infrastructure\Doctrine\DoctrineMysqlDatabaseCleaner'
+        public: true
+
+    Witrac\Tests\Shared\Infrastructure\Doctrine\DatabasePreparer:
+        class: 'Witrac\Tests\Shared\Infrastructure\Doctrine\DoctrineMysqlDatabasePreparer'
+        public: true

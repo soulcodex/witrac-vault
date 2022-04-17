@@ -44,7 +44,7 @@ class GetHandlersByFirstParameter
 
     private function firstParameterClassFrom(ReflectionMethod $method): string
     {
-        return $method->getParameters()[0]->getClass()->getName();
+        return $method->getParameters()[0]->getType()->getName();
     }
 
     private function hasOnlyOneParameter(ReflectionMethod $method): bool
