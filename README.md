@@ -42,3 +42,4 @@ Therefore using this class in your model and elsewhere does not introduce a coup
 8. Authentication system isn't implemented.
 9. Generic exception catching on controllers is a shortcut taken and could be replaced by an exception mapping
 responses by controller and environment (error trace in dev environments is really usefully).
+10. Feature tests for File entity isn't implemented yet.
