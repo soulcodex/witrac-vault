@@ -23,8 +23,14 @@ install: ## Install dependencies
 bash: ## Start bash console inside the container
 	docker exec --user www-data -it $(docker-container) /bin/bash
 
-migrate/dev:
+migrate/dev: ## Migrate database for development
 	docker exec $(docker-container) php bin/console doctrine:migrations:migrate --env=dev
 
-migrate/test:
+migrate/test: ## Migrate database for testing
 	docker exec $(docker-container) php bin/console doctrine:migrations:migrate --env=test
+
+test/unit: ## Execute unit tests
+	docker exec $(docker-container) ./vendor/bin/phpunit --testsuite Unit
+
+test/functional: ## Execute functional tests
+	docker exec $(docker-container) ./vendor/bin/behat
